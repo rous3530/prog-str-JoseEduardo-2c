@@ -6,5 +6,6 @@ public class mainNew {
         System.out.printf("5 * 3 = 15");
 
 
+
     }
 }
