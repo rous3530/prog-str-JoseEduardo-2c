@@ -28,7 +28,7 @@ public class Main{
         Scanner sc=new Scanner(System.in);
 
         int Numero=pedirEntero(sc,"Ingrese un numero positivio que no sea menor o igual a 0: ");
-        int Resultado = sumarHastaN(Numero);
+        int Resultado = sumarHastaNumero(Numero);
 
         System.out.println("El resultado de sumar "+ Numero +" es: "+ Resultado);
     }
@@ -48,7 +48,7 @@ public class Main{
      * @param Numero se ocupa el valor  de la seccion pedirEntero en esta sentencia
      * @return regresa el valor de VALORCERO
      */
-    public static int sumarHastaN(int Numero){
+    public static int sumarHastaNumero(int Numero){
         for (int i=1;i<=Numero;i++){
             VALORCERO+=i;
         }
