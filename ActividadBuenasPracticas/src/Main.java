@@ -23,8 +23,8 @@ public class Main{
  */
 
 public class Main{
-    public static  int VALORCERO = 0;
-    public static void main(String[]a){
+    public static  int SUMATORIA = 0;
+    public static void main(String[]args){
         Scanner sc=new Scanner(System.in);
 
         int Numero=pedirEntero(sc,"Ingrese un numero positivio que no sea menor o igual a 0: ");
@@ -46,13 +46,13 @@ public class Main{
 
     /**
      * @param Numero se ocupa el valor  de la seccion pedirEntero en esta sentencia
-     * @return regresa el valor de VALORCERO
+     * @return regresa el valor de SUMATORIA
      */
     public static int sumarHastaNumero(int Numero){
         for (int i=1;i<=Numero;i++){
-            VALORCERO+=i;
+            SUMATORIA+=i;
         }
-        return VALORCERO;
+        return SUMATORIA;
     }
 
 

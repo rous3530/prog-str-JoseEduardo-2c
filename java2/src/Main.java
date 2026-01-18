@@ -42,7 +42,8 @@ public class Main {
      * @param IMC
      * @return
      */
-    /** * Metodo que devuelve la clasificación basada en el IMC * @param IMC -> previamente calculado * @return String clasificacion */ public static String clasificarIMC(double IMC){
+    /** * Metodo que devuelve la clasificación basada en el IMC * @param IMC -> previamente calculado * @return String clasificacion */
+    public static String clasificarIMC(double IMC){
         if(IMC<PESOBAJO) {
             return "Peso Bajo";
         }
