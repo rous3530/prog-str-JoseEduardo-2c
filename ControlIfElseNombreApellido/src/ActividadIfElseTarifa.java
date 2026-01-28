@@ -16,7 +16,7 @@ public class ActividadIfElseTarifa {
             return;
         }
 
-        esEstudiante = obtenerBoolean(sc, "Es usted estudiante (Sí/No): ");
+        esEstudiante = obtenerBoolean(sc, "Es usted estudiante (TRUE/FALSE): ");
 
 
         tarifaFinal = calcularTarifa(edad, esEstudiante);
