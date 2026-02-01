@@ -22,7 +22,7 @@ public class Main{
  * 8.-no finalizar scanner para evitar la perdida de datos
  */
 
-public class Main{
+public class BuenasPracticas{
     public static  int SUMATORIA = 0;
     public static void main(String[]args){
         Scanner sc=new Scanner(System.in);

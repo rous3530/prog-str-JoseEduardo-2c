@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class IMC {
     public static  double PESOBAJO = 18.5;
     public static  double PESOMEDIO = 25;
     public static  double PESOALTO = 30;
