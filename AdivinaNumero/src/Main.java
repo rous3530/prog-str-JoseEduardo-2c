@@ -87,7 +87,7 @@ public class Main {
      * Despliega las estadísticas finales del juego.
      */
     public static void finalizarPartida(boolean gano, int secreto, int fueraRango, int fallosTipo) {
-        System.out.println("\nRESUMEN DE PARTIDA");
+        System.out.println("\n --- RESUMEN DE PARTIDA --- ");
         if (!gano) {
             System.out.println("Agotaste tus intentos. El número secreto era: " + secreto);
         }
