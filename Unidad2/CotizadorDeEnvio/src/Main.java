@@ -16,6 +16,21 @@ public class Main {
         shippingCalculator.process(pesoKg,distanciaKm,tipoServicio,zonaRemota);
 
         //OUPUT
-        shippingCalculator.imprimirTicket(tipoServicio, pesoKg, distanciaKm, zonaRemota, shippingCalculator);
+        String servicioTexto = (tipoServicio == 1) ? "Estándar" : "Express";
+
+        System.out.println("\n======= TICKET DE ENVÍO =======");
+        System.out.println("Servicio:      " + servicioTexto);
+        System.out.println("Peso:          " + pesoKg + " kg");
+        System.out.println("Distancia:     " + distanciaKm + " km");
+        System.out.println("Zona Remota:   " + (zonaRemota ? "Sí" : "No"));
+        System.out.println("-------------------------------");
+
+        // Usamos los getters de shippingCalculator
+        System.out.printf("Subtotal:      $%.2f\n", shippingCalculator.getSubtotal());
+        System.out.printf("IVA (16%%):     $%.2f\n", shippingCalculator.getIva());
+        System.out.printf("TOTAL FINAL:   $%.2f\n", shippingCalculator.getTotal());
+        System.out.println("-------------------------------\n");
+
+        sc.close();
     }
 }
