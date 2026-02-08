@@ -15,7 +15,7 @@ public class GradeService {
         if (!entregoProyecto) {
             return "REPROBADO por proyecto";
         }
-        if (notaFinal >= 7) {
+        if (notaFinal >= 70) {
             return "APROBADO";
         } else {
             return "REPROBADO por calificación";
