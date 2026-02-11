@@ -16,6 +16,7 @@ public class InputValidator {
             }
         }
     }
+
     public double getValidDouble(String message, Scanner sc){
         double value;
         while(true){

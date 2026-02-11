@@ -8,7 +8,7 @@ public class Main {
         //I-P-O
 
        //INPUT
-        double pesoKg = inputValidator.getValidDouble("Ingresa el peso del paquete a enviar",sc);
+        double pesoKg = inputValidator.getValidDouble("Ingresa el pewo del paquete a enviar",sc);
         int distanciaKm = inputValidator.getValidInt("Ingresa la distancia que recorrera",sc);
         int tipoServicio = inputValidator.getValidService("Escoga el tipo de servicio (1.-Estandar,2.-Express)",sc);
         boolean zonaRemota = inputValidator.getValidBoolean("Es zona Remota (true/false)",sc);
@@ -24,6 +24,8 @@ public class Main {
         System.out.println("Distancia:     " + distanciaKm + " km");
         System.out.println("Zona Remota:   " + (zonaRemota ? "Sí" : "No"));
         System.out.println("-------------------------------");
+
+
 
         // Usamos los getters de shippingCalculator
         System.out.printf("Subtotal:      $%.2f\n", shippingCalculator.getSubtotal());
