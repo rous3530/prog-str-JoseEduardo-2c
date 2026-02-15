@@ -16,7 +16,7 @@ public class Validator {
             }
         }
     }
-    public String leerTextoNoVacio(Scanner sc, String msg) {
+    public String  leerTextoNoVacio(Scanner sc, String msg) {
         String valor = "";
         while (true) {
             System.out.print(msg);

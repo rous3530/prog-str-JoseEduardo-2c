@@ -161,7 +161,7 @@ public class Eject {
     public void actualizacion(Eject[] usuarios, Scanner sc) {
         System.out.print("Ingrese el ID para actualizar nombre: ");
         int updateId = sc.nextInt();
-        sc.nextLine(); // Limpiar buffer
+        sc.nextLine();
         boolean encontrado = false;
 
         for (Eject u : usuarios) {
