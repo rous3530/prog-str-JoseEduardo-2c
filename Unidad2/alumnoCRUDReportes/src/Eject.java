@@ -8,7 +8,6 @@ public class Eject {
 
     public Eject() {}
 
-    // Getters y Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getNombre() { return nombre; }
@@ -39,7 +38,7 @@ public class Eject {
     public static int capturarOpcion(Scanner sc, String mensaje) {
         System.out.print(mensaje);
         int opt = sc.nextInt();
-        sc.nextLine(); // Limpiar buffer
+        sc.nextLine();
         return opt;
     }
 
@@ -69,7 +68,7 @@ public class Eject {
                 nuevo.setId(id);
                 nuevo.setNombre(nom);
                 nuevo.setPromedio(prom);
-                nuevo.setIsActive(true); // Alta siempre activo por defecto
+                nuevo.setIsActive(true);
                 alumnos[i] = nuevo;
                 System.out.println("Alumno registrado con éxito.");
                 return;
