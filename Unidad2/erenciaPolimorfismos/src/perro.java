@@ -1,0 +1,15 @@
+public class perro extends animal {
+
+
+    public perro(String name) {
+        super(name);
+    }
+
+    @Override
+    public void hacerSonido() {
+        System.out.println(name+" hace guau");
+    }
+    public void marcarTerritorio() {
+        System.out.println(name+" Esta alzando la patita");
+    }
+}
