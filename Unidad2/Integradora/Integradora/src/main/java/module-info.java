@@ -1,0 +1,12 @@
+module com.example.integradora {
+    requires javafx.controls;
+    requires javafx.fxml;
+
+
+    opens com.example.integradora to javafx.fxml;
+    exports com.example.integradora;
+    opens com.example.integradora.Controllers to javafx.fxml;
+    exports com.example.integradora.Controllers;
+    opens com.example.integradora.Process to javafx.base;
+    exports com.example.integradora.Process;
+}
