@@ -1,6 +1,6 @@
-package com.example.demolistviewfile.Services;
+package com.example.demolistviewfile.services;
 
-import com.example.demolistviewfile.Repositories.PersonFileRepository;
+import com.example.demolistviewfile.repositories.PersonFileRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,31 +14,53 @@ public class PersonService {
         List<String> lines = repo.readAllLines();
         List<String> result= new ArrayList<>();
         for(String line : lines){
-            if(line==null || line.isBlank()) continue;
+          if(line==null || line.isBlank()) continue;
 
-            String[] parts= line.split(",");
-            String name=parts[0];
-            String email=parts[1];
-            result.add(name+"-"+email);
+          String[] parts= line.split(",");
+          String name=parts[0];
+          String email=parts[1];
+          String edad=parts[2];
+          result.add(name+"-"+email+"-"+edad);
         }
         return result;
     }
+    public void updatePerson(int index, String name, String email, String edad) throws IOException {
+       validate(name, email, edad);
+        List<String> listoriginal=repo.readAllLines();
+        List<String> clearlines=new ArrayList<>();///RECORRE LA LISTAS Y CORRE LAS QUE ESTEN OCUPADA
+        for (String line: listoriginal){
+            if(line!=null && !line.isBlank()){
+clearlines.add(line);///la linea esta buena, no es null ni esta en blanco
+            }
+        }
+        /// cambiar el registro:
+        clearlines.set(index,name+","+email+","+edad );
+        /// para guardar:
+        repo.saveFile(clearlines);///sustituye la info del archivo dejandolo actualizado
+    }///para actualizar id para saber cual se substitute
 
-    public void addPerson(String name, String email,Integer age) throws IOException {
-        validate(name,email);
-        repo.addNewLine(name+","+email+","+age);
+    public void addPerson(String name, String email, String edad) throws IOException {
+        repo.addNewLine(name+","+email+","+edad);
+    }
+    private void validate(String name, String email, String edad){
+
+
     }
 
 
-    private void validate(String name, String email){
-        if (name== null || name.isBlank() || name.length()<3){
-            throw new IllegalArgumentException("el nombre es incorrecto");
+    public void delatePerson(int index) throws IOException {
+        List<String> listoriginal=repo.readAllLines();
+        List<String> clearlines=new ArrayList<>();
+        for (String line: listoriginal){
+            if(line!=null && !line.isBlank()){
+                clearlines.add(line);
+            }
         }
-        String em =(email==null) ? "" : email.trim();
-        if (em.isBlank() || !em.contains("@") || !em.contains(".")){
-            throw new IllegalArgumentException("el email es invalido");
-        }
-
-
+        /// cambiar el registro:
+        clearlines.remove(index);
+        /// para guardar:
+        repo.saveFile(clearlines);///sustituye la info del archivo dejandolo actualizado
     }
+
+
 }

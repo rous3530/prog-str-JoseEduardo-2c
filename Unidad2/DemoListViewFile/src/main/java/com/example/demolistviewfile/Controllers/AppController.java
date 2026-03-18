@@ -1,6 +1,6 @@
-package com.example.demolistviewfile.Controllers;
+package com.example.demolistviewfile.controllers;
 
-import com.example.demolistviewfile.Services.PersonService;
+import com.example.demolistviewfile.services.PersonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,72 +16,85 @@ public class AppController {
     @FXML
     private Label lblMsg;
     @FXML
-    private ListView<String> listView;
-
-    @FXML
     private TextField txtName;
     @FXML
     private TextField txtEmail;
     @FXML
-    private TextField txtAge; // Nuevo campo para la edad
+    private TextField txtEdad;
+    @FXML
+    private ListView<String> listView;
 
     private ObservableList<String> data = FXCollections.observableArrayList();
-    private PersonService service = new PersonService();
+    PersonService service= new PersonService();
 
     @FXML
-    public void initialize() {
+    public void initialize(){
         listView.setItems(data);
+        listView.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldValue,newValue)-> {
+                    if(newValue!=null){
+                        String[] parts=newValue.split("-");
+                        txtName.setText(parts[0]);
+                        txtEmail.setText(parts[1]);
+                        txtEdad.setText(parts[2]);
+                    }
+
+        });
         loadFromFile();
     }
 
     @FXML
-    public void onReload() {
+    public void onReload(){
         loadFromFile();
     }
 
-    @FXML
-    public void onAddPerson() {
-        try {
-            String name = txtName.getText();
-            String email = txtEmail.getText();
-            int age = Integer.parseInt(txtAge.getText());
-
-            if (age < 18) {
-                throw new IllegalArgumentException("No se puede: Debe ser mayor de edad.");
-            }
-
-            service.addPerson(name, email, age);
-
-            lblMsg.setText("Usuario creado correctamente");
-            lblMsg.setStyle("-fx-text-fill: green");
-
-            // Limpiar campos tras éxito
-            txtName.clear();
-            txtEmail.clear();
-            txtAge.clear();
-            loadFromFile();
-
-        } catch (NumberFormatException e) {
-            lblMsg.setText("Error: Ingrese un número válido en edad");
-            lblMsg.setStyle("-fx-text-fill: red");
-        } catch (IllegalArgumentException e) {
-            lblMsg.setText(e.getMessage());
-            lblMsg.setStyle("-fx-text-fill: red");
-        } catch (IOException e) {
-            lblMsg.setText("Error de archivo: " + e.getMessage());
-            lblMsg.setStyle("-fx-text-fill: red");
-        }
-    }
-
-    private void loadFromFile() {
-        try {
+    private void loadFromFile(){
+        try{
             List<String> items = service.loadForListView();
             data.setAll(items);
             lblMsg.setText("Datos cargados correctamente");
             lblMsg.setStyle("-fx-text-fill: green");
         } catch (IOException e) {
-            lblMsg.setText("Error al cargar: " + e.getMessage());
+            lblMsg.setText("Error: "+e.getMessage());
             lblMsg.setStyle("-fx-text-fill: red");
+        }
+    }
+    @FXML
+    public void actualizar(){
+        try{
+            int index=listView.getSelectionModel().getSelectedIndex();
+            String name = txtName.getText();
+            String email = txtEmail.getText();
+            String edad = txtEdad.getText();
+            service.updatePerson(index, name, email, edad);
+            loadFromFile();
+            txtName.clear();
+            txtEmail.clear();
+            txtEdad.clear();
+            lblMsg.setText("se actualizo el registro correctamente");
+        }catch (IOException e){
+            lblMsg.setText("hubo un error con el archivo");
+        }catch (IllegalArgumentException e){
+            lblMsg.setText("hubo un error con los datos" +e.getMessage());
+        }
+    }
+    @FXML
+    public void delete() {/// para borrar usuario
+        try {
+            int index = listView.getSelectionModel().getSelectedIndex();
+            String name = txtName.getText();
+            String email = txtEmail.getText();
+            String edad = txtEdad.getText();
+            service.delatePerson(index);
+            loadFromFile();
+            txtName.clear();
+            txtEmail.clear();
+            txtEdad.clear();
+            lblMsg.setText("se elimino el registro correctamente");
+        } catch (IOException e) {
+            lblMsg.setText("hubo un error con el archivo");
+        } catch (IllegalArgumentException e) {
+            lblMsg.setText("hubo un error con los datos" + e.getMessage());
         }
     }
 }
