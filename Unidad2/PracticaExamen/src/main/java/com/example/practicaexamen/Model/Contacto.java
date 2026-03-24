@@ -11,7 +11,6 @@ public class Contacto {
         this.parentesco = parentesco;
     }
 
-    // Getters y Setters
     public String getNombre() { return nombre; }
     public String getTelefono() { return telefono; }
     public String getParentesco() { return parentesco; }
@@ -20,6 +19,7 @@ public class Contacto {
     public String toString() {
         return String.format("%-15s | %-10s | %s", nombre, telefono, parentesco);
     }
+
 
     public void setTelefono(String text) {
     }

@@ -19,21 +19,19 @@ public class HelloController {
     @FXML private ListView<Contacto> listView;
     @FXML private Label lblMsg;
 
-    // Regla #2: Lista para guardar contactos
+
     private List<Contacto> listaContactos = new ArrayList<>();
     private ObservableList<Contacto> obsContactos;
 
-    // Regla #3 y Uso obligatorio del arreglo:
+
     private final String[] opcionesParentesco = {
             "Padre", "Madre", "Hermano", "Hermana", "Abuelo", "Abuela", "Tío", "Tía"
     };
 
     @FXML
     public void initialize() {
-        // Cargar el ComboBox desde el arreglo
         cbParentesco.setItems(FXCollections.observableArrayList(opcionesParentesco));
 
-        // Configurar el ListView
         obsContactos = FXCollections.observableArrayList(listaContactos);
         listView.setItems(obsContactos);
     }
@@ -69,11 +67,22 @@ public class HelloController {
 
     @FXML
     protected void onActualizarClick() {
-        Contacto c = buscarPorNombre(txtNombre.getText().trim());
+        String nombre = txtNombre.getText().trim();
+        Contacto c = buscarPorNombre(nombre);
+
         if (c != null && validar(c.getNombre(), txtTelefono.getText(), cbParentesco.getValue())) {
-            c.setTelefono(txtTelefono.getText());
-            c.setParentesco(cbParentesco.getValue());
-            actualizarInterfaz("Contacto actualizado.");
+
+            int indice = listaContactos.indexOf(c);
+
+            Contacto contactoActualizado = new Contacto(nombre, txtTelefono.getText(), cbParentesco.getValue());
+
+            listaContactos.set(indice, contactoActualizado);
+
+            obsContactos.setAll(listaContactos);
+
+            lblMsg.setText("Contacto actualizado con éxito.");
+        } else {
+            lblMsg.setText("Error: No se pudo actualizar.");
         }
     }
 
@@ -94,8 +103,6 @@ public class HelloController {
         cbParentesco.getSelectionModel().clearSelection();
         lblMsg.setText("");
     }
-
-    // --- Métodos de apoyo ---
 
     private boolean validar(String n, String t, String p) {
         if (n.isEmpty() || t.isEmpty() || p == null) {
